@@ -79,10 +79,15 @@ const ImageConverter = () => {
       formData.append('file', file);
       formData.append('targetFormat', targetFormat);
 
-      const response = await axios.post('/api/convert', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        responseType: 'blob'
-      });
+      const response = await axios.post(
+  `${API_BASE_URL}/api/convert`,
+  formData,
+  {
+    headers: { 'Content-Type': 'multipart/form-data' },
+    responseType: 'blob'
+  }
+);
+
 
       // Create download link
       const url = window.URL.createObjectURL(new Blob([response.data]));

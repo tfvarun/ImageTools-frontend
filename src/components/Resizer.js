@@ -142,9 +142,10 @@ const Resizer = () => {
       }
 
       const response = await axios.post(endpoint, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        responseType: 'blob'
-      });
+  headers: { 'Content-Type': 'multipart/form-data' },
+  responseType: mode === 'bulk' ? 'json' : 'blob'
+});
+
 
       const contentType = response.headers['content-type'] || '';
       if (mode === 'bulk') {
