@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Resizer.css';
+import API_BASE_URL from '../config/api';
 
 const Resizer = () => {
   const [file, setFile] = useState(null);
@@ -123,7 +124,8 @@ const Resizer = () => {
 
     try {
       const formData = new FormData();
-      const endpoint = mode === 'bulk' ? '/api/bulk-resize' : '/api/resize';
+      const endpoint = mode === 'bulk' ? `${API_BASE_URL}/api/bulk-resize` : `${API_BASE_URL}/api/resize`;
+
       
       if (mode === 'bulk') {
         files.forEach((f) => {

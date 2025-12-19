@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Compressor.css';
+import API_BASE_URL from '../config/api';
 
 const Compressor = () => {
   const [file, setFile] = useState(null);
@@ -58,9 +59,12 @@ const Compressor = () => {
         } else {
           formData.append('maxSizeKb', maxSizeKb || '');
         }
-        const response = await axios.post('/api/compress-preview', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' }
-        });
+        const response = await axios.post(
+     `${API_BASE_URL}/api/compress-preview`,
+      formData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
+      );
+
         setEstimateBytes(response.data?.bytes || null);
       } catch (err) {
         setEstimateBytes(null);
@@ -88,10 +92,15 @@ const Compressor = () => {
         formData.append('maxSizeKb', maxSizeKb);
       }
 
-      const response = await axios.post('/api/compress', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        responseType: 'blob'
-      });
+      const response = await axios.post(
+      `${API_BASE_URL}/api/compress`,
+      formData,
+  {
+    headers: { 'Content-Type': 'multipart/form-data' },
+    responseType: 'blob'
+  }
+);
+
 
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
@@ -244,3 +253,4 @@ const Compressor = () => {
 };
 
 export default Compressor;
+

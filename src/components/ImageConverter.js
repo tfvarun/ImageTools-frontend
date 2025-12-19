@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ImageConverter.css';
+import API_BASE_URL from '../config/api';
+
 
 const ImageConverter = () => {
   const [file, setFile] = useState(null);
@@ -30,9 +32,14 @@ const ImageConverter = () => {
       const formData = new FormData();
       formData.append('file', selectedFile);
 
-      const response = await axios.post('/api/get-conversion-options', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      const response = await axios.post(
+  `${API_BASE_URL}/api/get-conversion-options`,
+  formData,
+  {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }
+);
+
 
       setInputFormat(response.data.inputFormat);
       setAvailableFormats(response.data.availableFormats);

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './Cropper.css';
+import API_BASE_URL from '../config/api';
+
 
 const Cropper = () => {
   const [file, setFile] = useState(null);
@@ -395,10 +397,15 @@ const Cropper = () => {
       formData.append('width', Math.round(cropArea.width));
       formData.append('height', Math.round(cropArea.height));
 
-      const response = await axios.post('/api/crop', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        responseType: 'blob'
-      });
+      const response = await axios.post(
+  `${API_BASE_URL}/api/crop`,
+  formData,
+  {
+    headers: { 'Content-Type': 'multipart/form-data' },
+    responseType: 'blob'
+  }
+);
+
 
       // Create download link
       const url = window.URL.createObjectURL(new Blob([response.data]));
