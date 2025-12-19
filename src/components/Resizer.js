@@ -150,8 +150,10 @@ const Resizer = () => {
       const contentType = response.headers['content-type'] || '';
       if (mode === 'bulk') {
         if (contentType.includes('application/json')) {
-          const text = await response.data.text();
-          const data = JSON.parse(text);
+          // const text = await response.data.text();
+          // const data = JSON.parse(text);
+
+          const data = response.data;
           const items = Array.isArray(data.files) ? data.files.slice(0, 10) : [];
           for (const item of items) {
             if (item.url) {
