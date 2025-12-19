@@ -1,0 +1,35 @@
+.footer {
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  margin-top: 40px;
+}
+
+.footer-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 16px 0;
+}
+
+.footer-copy {
+  color: var(--text-secondary);
+}
+
+.footer-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+  text-decoration: underline;
+  color: var(--text-primary);
+}
+
+.footer-link:link,
+.footer-link:visited,
+.footer-link:active {
+  color: var(--text-primary);
+}
